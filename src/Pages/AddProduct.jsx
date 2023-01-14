@@ -44,58 +44,60 @@ const AddProduct = () => {
 
   return (
     <>
-      <Heading>Add Your Product</Heading>
-      <section className="flex justify-center items-center ">
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input
-              name="name"
-              type="text"
-              placeholder="Name"
-              className="input input-bordered w-full max-w-xs my-1"
-            />
-          </div>
-          <div>
-            <input
-              name="description"
-              type="text"
-              placeholder="Description..."
-              className="input input-bordered w-full max-w-xs my-1 input-lg"
-            />
-          </div>
-          <div>
-            <input
-              name="price"
-              type="text"
-              placeholder="Price"
-              className="input input-bordered w-full max-w-xs my-1"
-            />
-          </div>
-          <div>
-            <input
-              name="picture"
-              type="text"
-              placeholder="Picture Url..."
-              className="input input-bordered input-lg w-full max-w-xs my-1"
-            />
-          </div>
-          <div className="flex justify-center">
-            <p>
-              <span className="text-blue-600 text-lg mr-2">Active</span>
-            </p>
-            <input
-              onChange={() => setActiveState(!activeState)}
-              name="active"
-              type="checkbox"
-              className="toggle"
-              checked={activeState}
-            />
-          </div>
-          <div>
-            <Button>Add Product</Button>
-          </div>
-        </form>
-      </section>
+      <div className="min-h-screen">
+        <Heading>Add Your Product</Heading>
+        <section className="flex justify-center items-center ">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <input
+                name="name"
+                type="text"
+                placeholder="Name"
+                className="input input-bordered w-full max-w-xs my-1"
+              />
+            </div>
+            <div>
+              <input
+                name="description"
+                type="text"
+                placeholder="Description..."
+                className="input input-bordered w-full max-w-xs my-1 input-lg"
+              />
+            </div>
+            <div>
+              <input
+                name="price"
+                type="text"
+                placeholder="Price"
+                className="input input-bordered w-full max-w-xs my-1"
+              />
+            </div>
+            <div>
+              <input
+                name="picture"
+                type="text"
+                placeholder="Picture Url..."
+                className="input input-bordered input-lg w-full max-w-xs my-1"
+              />
+            </div>
+            <div className="flex justify-center">
+              <p>
+                <span className="text-blue-600 text-lg mr-2">Active</span>
+              </p>
+              <input
+                onChange={() => setActiveState(!activeState)}
+                name="active"
+                type="checkbox"
+                className="toggle"
+                checked={activeState}
+              />
+            </div>
+            <div>
+              <Button>Add Product</Button>
+            </div>
+          </form>
+        </section>
+      </div>
     </>
   );
 };

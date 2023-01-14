@@ -15,31 +15,33 @@ import Heading from "./Heading";
 export default function HomeSlider({ products }) {
   return (
     <>
-      <Heading>Our Leatest Products</Heading>
-      <Swiper
-        effect={"coverflow"}
-        grabCursor={false}
-        centeredSlides={true}
-        slidesPerView={3}
-        coverflowEffect={{
-          scale: 1,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: false,
-        }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper my-12"
-      >
-        {products?.slice(0, 3)?.map((product) => (
-          <SwiperSlide key={product?.id}>
-            <Link to={`/allproducts/${product?.id}`}>
-              <img className="w-full " src={product?.picture} alt="" />
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="min-h-screen">
+        <Heading>Our Leatest Products</Heading>
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={false}
+          centeredSlides={true}
+          slidesPerView={3}
+          coverflowEffect={{
+            scale: 1,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: false,
+          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination]}
+          className="mySwiper my-12"
+        >
+          {products?.slice(0, 3)?.map((product) => (
+            <SwiperSlide key={product?.id}>
+              <Link to={`/allproducts/${product?.id}`}>
+                <img className="w-full " src={product?.picture} alt="" />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </>
   );
 }
