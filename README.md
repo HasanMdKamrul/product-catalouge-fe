@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Product Catalouge  Application
+## Md Kamrul Hasan
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+# Front-End Repository 
+- link https://github.com/HasanMdKamrul/product-catalouge-fe
 
-### `npm start`
+# Back-End Repository 
+- link https://github.com/HasanMdKamrul/Products-catalogue-server-python
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Running Instructions using docker-compose.yaml file
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Clone this repo - https://github.com/HasanMdKamrul/Sasol-product-catalouge.git  (full structured repo different)
+- Go to the root of the project, you will find a docker-compose.yaml file 
+- Running Command - docker-compose up (in the terminal)
+- Ports are specified like this - Frontend - http://localhost:3000/   | Backend - http://localhost:8000/
+- To run this you have to specify the ports (Fe and Be) and SECRET_KEY='django-insecure-)#8o@31==8tyb$6_21)g8p_df#v@m!nevzji5_gi!b)$un7$dl' 
+- Use the secret key as the environment var.
 
-### `npm test`
+# Running Instructions using dockerhub images created by me (Individual Image)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- docker pull hasanmdkamrul/product-api
+- docker run --name containername -p 8000:8000 hasanmdkamrul/product-api:latest
 
-### `npm run build`
+- docker pull hasanmdkamrul/product-fe
+- docker run --name containername -p 3000:3000 hasanmdkamrul/product-fe:latest 
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- go to the frontend site , which can perform curd operation adding and manipulating data,searching by name(no need to exact match included).
+- In the backend I have configured the time specific temporary price of the products
+- keep the ui as clean as possible
+- Home page has a slider , they are clickable and redirect to specific product with details.
+- Beside this allproducts route has all the products
+- If you run my images from the dockerhub you don't need to put the SECRET_KEY for this api
+- Both the images should be running in order to see the results 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
