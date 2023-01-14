@@ -1,11 +1,10 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
+import HomeSlider from "../components/core/HomeSlider";
 
 const Home = () => {
-  return (
-    <div>
-      <h1>Home</h1>
-    </div>
-  );
+  const products = useLoaderData();
+  return <HomeSlider products={products} />;
 };
 
 export default Home;

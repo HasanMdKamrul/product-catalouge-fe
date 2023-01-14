@@ -1,6 +1,6 @@
 import { FaMoneyBillWave } from "react-icons/fa";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import Heading from "../components/Heading";
+import Heading from "../components/core/Heading";
 
 const ProductDetail = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import Heading from "../components/Heading";
+import Button from "../components/core/Button";
+import Heading from "../components/core/Heading";
 
 const AddProduct = () => {
   const [activeState, setActiveState] = useState(false);
