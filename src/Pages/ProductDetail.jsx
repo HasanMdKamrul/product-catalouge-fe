@@ -1,4 +1,4 @@
-import { FaMoneyBillWave } from "react-icons/fa";
+import { FaCheck, FaMinus, FaMoneyBillWave } from "react-icons/fa";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Heading from "../components/core/Heading";
 
@@ -73,6 +73,21 @@ const ProductDetail = () => {
                     Temp_Price: {product?.temp_price}{" "}
                   </span>
                 </p>
+                {product.active ? (
+                  <p className="flex items-center my-2">
+                    <FaCheck className="text-cyan-600 mr-2 text-3xl" />
+                    <span className="text-cyan-500 text-xl font-bold">
+                      Active
+                    </span>
+                  </p>
+                ) : (
+                  <p className="flex items-center my-2">
+                    <FaMinus className="text-cyan-600 mr-2 text-3xl" />
+                    <span className="text-cyan-500 text-xl font-bold">
+                      Not Active
+                    </span>
+                  </p>
+                )}
                 <div className="flex items-center">
                   <Link to={`/updateproduct/${product?.id}`}>
                     <button
