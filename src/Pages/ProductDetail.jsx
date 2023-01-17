@@ -12,7 +12,7 @@ const ProductDetail = () => {
     console.log(id);
     try {
       const response = await fetch(
-        `http://localhost:8000/api/products/${id}/delete`,
+        `${process.env.REACT_APP_API_END_POINT}api/products/${id}/delete`,
         {
           method: "DELETE",
         }

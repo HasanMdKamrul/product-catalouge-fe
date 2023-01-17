@@ -7,7 +7,9 @@ const AllProducts = () => {
   useEffect(() => {
     const loadProduct = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/products/");
+        const response = await fetch(
+          `${process.env.REACT_APP_API_END_POINT}api/products/`
+        );
         const data = await response.json();
         setProducts(data);
       } catch (error) {

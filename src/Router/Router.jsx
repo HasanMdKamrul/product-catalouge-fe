@@ -16,7 +16,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch(`http://localhost:8000/api/products/`),
+        loader: () =>
+          fetch(`${process.env.REACT_APP_API_END_POINT}api/products/`),
       },
       {
         path: "/allproducts",
@@ -30,13 +31,13 @@ const router = createBrowserRouter([
         path: "/allproducts/:id",
         element: <ProductDetail />,
         loader: ({ params: { id } }) =>
-          fetch(`http://localhost:8000/api/products/${id}/`),
+          fetch(`${process.env.REACT_APP_API_END_POINT}api/products/${id}/`),
       },
       {
         path: "/updateproduct/:id",
         element: <ProductUpdate />,
         loader: ({ params: { id } }) =>
-          fetch(`http://localhost:8000/api/products/${id}`),
+          fetch(`${process.env.REACT_APP_API_END_POINT}api/products/${id}`),
       },
     ],
   },

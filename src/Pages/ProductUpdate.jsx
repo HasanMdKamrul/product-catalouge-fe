@@ -32,7 +32,7 @@ const ProductUpdate = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/products/${product?.id}/update/`,
+        `${process.env.REACT_APP_API_END_POINT}api/products/${product?.id}/update/`,
         {
           method: "PUT",
           headers: {

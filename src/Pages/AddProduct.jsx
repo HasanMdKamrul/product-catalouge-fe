@@ -24,13 +24,16 @@ const AddProduct = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:8000/api/products/add/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newProductObject),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_END_POINT}api/products/add/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newProductObject),
+        }
+      );
 
       const data = await response.json();
 
