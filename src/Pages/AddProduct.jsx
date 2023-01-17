@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/core/Button";
 import Heading from "../components/core/Heading";
@@ -7,43 +7,46 @@ const AddProduct = () => {
   const [activeState, setActiveState] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const description = form.description.value;
-    const price = form.price.value;
-    const picture = form.picture.value;
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const description = form.description.value;
+      const price = form.price.value;
+      const picture = form.picture.value;
 
-    const newProductObject = {
-      name,
-      description,
-      price,
-      picture,
-      active: activeState,
-    };
+      const newProductObject = {
+        name,
+        description,
+        price,
+        picture,
+        active: activeState,
+      };
 
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_END_POINT}api/products/add/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newProductObject),
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_END_POINT}api/products/add/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newProductObject),
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          navigate("/allproducts");
         }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        navigate("/allproducts");
+      } catch (error) {
+        console.log(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    },
+    [activeState, navigate]
+  );
 
   return (
     <>
