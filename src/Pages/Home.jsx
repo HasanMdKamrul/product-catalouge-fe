@@ -4,7 +4,8 @@ import Banner from "../components/app/Banner";
 import HomeSlider from "../components/core/HomeSlider";
 
 const Home = () => {
-  const products = useLoaderData();
+  const { results: products } = useLoaderData();
+
   return (
     <>
       <Banner />

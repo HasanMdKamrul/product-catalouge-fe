@@ -3,7 +3,14 @@ import Heading from "../core/Heading";
 
 import ProductCard from "./ProductCard";
 
-const Products = ({ products }) => {
+const Products = ({
+  products,
+  nextUrl,
+  previousUrl,
+  setProducts,
+  setNextUrl,
+  setPreviousUrl,
+}) => {
   const [search, setSearch] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [noDataFound, setNoDataFound] = useState(false);
@@ -12,18 +19,18 @@ const Products = ({ products }) => {
     if (search) {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/products/?search=${search}`
+          `http://localhost:8000/api/products/?search=${search}`
         );
 
         const data = await response.json();
 
-        if (data.length === 0) {
+        if (data.results.length === 0) {
           setNoDataFound(true);
         }
 
         if (response.ok) {
-          setSearchResults(data);
-          setSearch(null);
+          setSearchResults(data.results);
+          // setSearch(null);
         }
       } catch (error) {
         console.log(error.message);
@@ -33,13 +40,27 @@ const Products = ({ products }) => {
     }
   };
 
+  const handlePagination = async (url) => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setProducts(data.results);
+      setNextUrl(data.next);
+      setPreviousUrl(data.previous);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <>
       <div className="min-h-screen">
         <Heading>Search Your Product</Heading>
         <div className="flex justify-center items-center">
           <input
-            onChange={(e) => setSearch(e.target.value)}
+            onBlur={(e) => {
+              setSearch(e.target.value);
+            }}
             type="text"
             placeholder="Search By Name..."
             className="input input-bordered w-full tracking-wide max-w-xs"
@@ -67,6 +88,24 @@ const Products = ({ products }) => {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
+        </div>
+        <div className="flex justify-center items-center mt-12">
+          {previousUrl && (
+            <button
+              onClick={() => handlePagination(previousUrl)}
+              className="btn btn-accent mr-2"
+            >
+              Previous
+            </button>
+          )}
+          {nextUrl && (
+            <button
+              onClick={() => handlePagination(nextUrl)}
+              className="btn btn-accent"
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </>

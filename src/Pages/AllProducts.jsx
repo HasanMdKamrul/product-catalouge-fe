@@ -3,6 +3,8 @@ import Products from "../components/app/Products";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
+  const [nextUrl, setNextUrl] = useState(null);
+  const [previousUrl, setPreviousUrl] = useState(null);
 
   useEffect(() => {
     const loadProduct = async () => {
@@ -11,7 +13,9 @@ const AllProducts = () => {
           `${process.env.REACT_APP_API_END_POINT}api/products/`
         );
         const data = await response.json();
-        setProducts(data);
+        setNextUrl(data.next);
+        setPreviousUrl(data.previous);
+        setProducts(data.results);
       } catch (error) {
         console.log(error.message);
       }
@@ -19,7 +23,16 @@ const AllProducts = () => {
     loadProduct();
   }, []);
 
-  return <Products products={products} />;
+  return (
+    <Products
+      setNextUrl={setNextUrl}
+      setPreviousUrl={setPreviousUrl}
+      setProducts={setProducts}
+      products={products}
+      nextUrl={nextUrl}
+      previousUrl={previousUrl}
+    />
+  );
 };
 
 export default AllProducts;

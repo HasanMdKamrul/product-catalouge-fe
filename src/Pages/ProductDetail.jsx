@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { FaCheck, FaMinus, FaMoneyBillWave } from "react-icons/fa";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Heading from "../components/core/Heading";
@@ -8,23 +9,26 @@ const ProductDetail = () => {
 
   console.log(product);
 
-  const handledelete = async (id) => {
-    console.log(id);
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_END_POINT}api/products/${id}/delete`,
-        {
-          method: "DELETE",
+  const handledelete = useCallback(
+    async (id) => {
+      console.log(id);
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_END_POINT}api/products/${id}/delete`,
+          {
+            method: "DELETE",
+          }
+        );
+        const data = await response.json();
+        if (response.ok) {
+          navigate("/allproducts");
         }
-      );
-      const data = await response.json();
-      if (response.ok) {
-        navigate("/allproducts");
+      } catch (error) {
+        console.log(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    },
+    [navigate]
+  );
 
   return (
     <>
