@@ -1,6 +1,7 @@
 // import Link from "next/link";
 
-import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import useToken from "../../Hooks/useToken";
 
 const NavItems = (
@@ -19,6 +20,24 @@ const NavItems = (
 
 const Navbar = () => {
   const { token } = useToken();
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/auth/token/logout/`, {
+        method: "POST",
+      });
+      const data = await response.json();
+      if (data.detail === "Authentication credentials were not provided.") {
+        localStorage.removeItem("auth_token");
+        toast.success("Logout Successful");
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>
@@ -57,11 +76,11 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {token ? (
-            <Link to="/register" className="btn">
+            <Link onClick={handleLogout} to="/register" className="btn">
               Logout
             </Link>
           ) : (
-            <Link to="/register" className="btn">
+            <Link to="/login" className="btn">
               Login
             </Link>
           )}
