@@ -1,6 +1,7 @@
 // import Link from "next/link";
 
 import { Link } from "react-router-dom";
+import useToken from "../../Hooks/useToken";
 
 const NavItems = (
   <>
@@ -17,6 +18,8 @@ const NavItems = (
 );
 
 const Navbar = () => {
+  const { token } = useToken();
+
   return (
     <>
       <div className="navbar bg-base-100">
@@ -53,7 +56,15 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{NavItems}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Get started</a>
+          {token ? (
+            <Link to="/register" className="btn">
+              Logout
+            </Link>
+          ) : (
+            <Link to="/register" className="btn">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </>
