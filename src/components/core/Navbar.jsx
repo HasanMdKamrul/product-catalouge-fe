@@ -1,7 +1,8 @@
 // import Link from "next/link";
 
 import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { MdLogin, MdLogout } from "react-icons/md";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useToken from "../../Hooks/useToken";
 
 const Navbar = () => {
@@ -11,19 +12,52 @@ const Navbar = () => {
 
   const NavItems = (
     <>
-      <Link to={`/`}>
-        <button className="btn btn-ghost">Home</button>
-      </Link>
-      <Link to={`/allproducts`}>
-        <button className="btn btn-ghost">All Products</button>
-      </Link>
-      <Link to={`/addproduct`}>
-        <button className="btn btn-ghost">Add product</button>
-      </Link>
+      <NavLink
+        rel="noopener noreferrer"
+        to="/"
+        className={({ isActive }) =>
+          isActive
+            ? "flex items-center px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+            : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold text-dark  "
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
+        rel="noopener noreferrer"
+        to={`/allproducts`}
+        className={({ isActive }) =>
+          isActive
+            ? "flex items-center px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+            : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold   "
+        }
+      >
+        All Products
+      </NavLink>
+      <NavLink
+        rel="noopener noreferrer"
+        to={`/addproduct`}
+        className={({ isActive }) =>
+          isActive
+            ? "flex items-center px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+            : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold   "
+        }
+      >
+        Add product
+      </NavLink>
+
       {token && (
-        <Link to={`/myproducts`}>
-          <button className="btn btn-ghost">My products</button>
-        </Link>
+        <NavLink
+          rel="noopener noreferrer"
+          to={`/myproducts`}
+          className={({ isActive }) =>
+            isActive
+              ? "flex items-center px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+              : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold   "
+          }
+        >
+          My products
+        </NavLink>
       )}
     </>
   );
@@ -75,7 +109,10 @@ const Navbar = () => {
               {NavItems}
             </ul>
           </div>
-          <Link to={`/`} className="btn btn-ghost normal-case text-xl">
+          <Link
+            to={`/`}
+            className="btn btn-ghost normal-case text-xl font-poppins"
+          >
             Sasol Products
           </Link>
         </div>
@@ -84,12 +121,12 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {token ? (
-            <Link onClick={handleLogout} to="/register" className="btn">
-              Logout
+            <Link onClick={handleLogout} to="/register">
+              <MdLogout />
             </Link>
           ) : (
-            <Link to="/login" className="btn">
-              Login
+            <Link to="/login">
+              <MdLogin />
             </Link>
           )}
         </div>
