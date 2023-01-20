@@ -1,9 +1,12 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +31,7 @@ const Login = () => {
         console.log(data);
         toast.success("Login Successful");
         localStorage.setItem("auth_token", data.auth_token);
-        navigate("/");
+        navigate(from, { replace: true });
       }
     } catch (error) {
       console.log(error.message);

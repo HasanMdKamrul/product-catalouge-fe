@@ -19,7 +19,7 @@ const Products = ({
     if (search) {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/products/?search=${search}/?ordering=-id`
+          `http://localhost:8000/api/products/?search=${search}`
         );
 
         const data = await response.json();

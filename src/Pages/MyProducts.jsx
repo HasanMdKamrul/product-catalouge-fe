@@ -1,0 +1,51 @@
+import React, { useEffect, useState } from "react";
+import MyProductCard from "../components/app/MyProductCard";
+import Heading from "../components/core/Heading";
+import useAuth from "../Hooks/useAuth";
+
+const MyProducts = () => {
+  const [myProducts, setMyProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  console.log(myProducts);
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/products/user/${user?.id}/`,
+          {
+            headers: {
+              Authorization: `Token ${localStorage.getItem("auth_token")}`,
+            },
+          }
+        );
+        const data = await response.json();
+        setMyProducts(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    loadData();
+  }, [user?.id]);
+
+  return (
+    <>
+      <Heading>Products added by you</Heading>
+      {!loading && (
+        <div className="px-4  min-h-screen py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+          <div className="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
+            {myProducts?.map((product, index) => (
+              <MyProductCard product={product} key={index} />
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default MyProducts;

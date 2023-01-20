@@ -2,10 +2,13 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/core/Button";
 import Heading from "../components/core/Heading";
+import useAuth from "../Hooks/useAuth";
 
 const AddProduct = () => {
   const [activeState, setActiveState] = useState(false);
   const navigate = useNavigate();
+
+  const { user } = useAuth();
 
   const handleSubmit = useCallback(
     async (e) => {
@@ -17,6 +20,7 @@ const AddProduct = () => {
       const picture = form.picture.value;
 
       const newProductObject = {
+        User: user?.id,
         name,
         description,
         price,
@@ -31,6 +35,7 @@ const AddProduct = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Token ${localStorage.getItem("auth_token")}`,
             },
             body: JSON.stringify(newProductObject),
           }
@@ -45,7 +50,7 @@ const AddProduct = () => {
         console.log(error.message);
       }
     },
-    [activeState, navigate]
+    [activeState, navigate, user]
   );
 
   return (

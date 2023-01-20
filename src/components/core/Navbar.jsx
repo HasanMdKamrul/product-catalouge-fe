@@ -4,29 +4,37 @@ import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import useToken from "../../Hooks/useToken";
 
-const NavItems = (
-  <>
-    <Link to={`/`}>
-      <button className="btn btn-ghost">Home</button>
-    </Link>
-    <Link to={`/allproducts`}>
-      <button className="btn btn-ghost">All Products</button>
-    </Link>
-    <Link to={`/addproduct`}>
-      <button className="btn btn-ghost">Add product</button>
-    </Link>
-  </>
-);
-
 const Navbar = () => {
   const { token } = useToken();
 
   const navigate = useNavigate();
 
+  const NavItems = (
+    <>
+      <Link to={`/`}>
+        <button className="btn btn-ghost">Home</button>
+      </Link>
+      <Link to={`/allproducts`}>
+        <button className="btn btn-ghost">All Products</button>
+      </Link>
+      <Link to={`/addproduct`}>
+        <button className="btn btn-ghost">Add product</button>
+      </Link>
+      {token && (
+        <Link to={`/myproducts`}>
+          <button className="btn btn-ghost">My products</button>
+        </Link>
+      )}
+    </>
+  );
+
   const handleLogout = async () => {
     try {
       const response = await fetch(`http://localhost:8000/auth/token/logout/`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       const data = await response.json();
       if (data.detail === "Authentication credentials were not provided.") {

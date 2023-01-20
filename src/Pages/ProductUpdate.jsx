@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Button from "../components/core/Button";
 import Heading from "../components/core/Heading";
+import useAuth from "../Hooks/useAuth";
 
 const ProductUpdate = () => {
   const product = useLoaderData();
+
+  const { user } = useAuth();
 
   console.log(product);
 
@@ -23,6 +26,7 @@ const ProductUpdate = () => {
     const picture = form.picture.value;
 
     const updatedProductObject = {
+      User: user?.id,
       name,
       description,
       price,
@@ -37,6 +41,7 @@ const ProductUpdate = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Token ${localStorage.getItem("auth_token")}`,
           },
           body: JSON.stringify(updatedProductObject),
         }
