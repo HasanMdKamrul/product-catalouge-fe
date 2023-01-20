@@ -27,11 +27,14 @@ const Login = () => {
       });
 
       const data = await response.json();
+      console.log(data);
       if (response.ok) {
         console.log(data);
         toast.success("Login Successful");
         localStorage.setItem("auth_token", data.auth_token);
         navigate(from, { replace: true });
+      } else {
+        toast.error("Email Or Password is incorrect !");
       }
     } catch (error) {
       console.log(error.message);

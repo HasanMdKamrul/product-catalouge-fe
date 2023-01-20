@@ -18,7 +18,7 @@ const Registration = () => {
     // );
 
     if (password.value !== confirmpassword.value) {
-      return alert("Passwords do not match");
+      return toast.error("Passwords do not match !");
     }
 
     const registerData = {
@@ -42,6 +42,8 @@ const Registration = () => {
       if (response.ok) {
         toast.success("Registration Successful");
         navigate("/");
+      } else {
+        toast.error("Something Went Wrong, Please try again !");
       }
     } catch (error) {
       console.log(error.message);

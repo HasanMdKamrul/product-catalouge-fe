@@ -3,6 +3,7 @@
 import { toast } from "react-hot-toast";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import logo from "../../assests/Images/sasollogo.png";
 import useToken from "../../Hooks/useToken";
 
 const Navbar = () => {
@@ -17,7 +18,7 @@ const Navbar = () => {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? "flex items-center px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+            ? "flex items-center px-4 pb-1 -mb-1 animate-pulse border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
             : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold text-dark  "
         }
       >
@@ -28,7 +29,7 @@ const Navbar = () => {
         to={`/allproducts`}
         className={({ isActive }) =>
           isActive
-            ? "flex items-center px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+            ? "flex items-center  pb-1 animate-pulse px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
             : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold   "
         }
       >
@@ -39,7 +40,7 @@ const Navbar = () => {
         to={`/addproduct`}
         className={({ isActive }) =>
           isActive
-            ? "flex items-center px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+            ? "flex items-center  pb-1 animate-pulse  px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
             : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold   "
         }
       >
@@ -52,7 +53,7 @@ const Navbar = () => {
           to={`/myproducts`}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+              ? "flex items-center  pb-1 animate-pulse  px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
               : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold   "
           }
         >
@@ -109,11 +110,10 @@ const Navbar = () => {
               {NavItems}
             </ul>
           </div>
-          <Link
-            to={`/`}
-            className="btn btn-ghost normal-case text-xl font-poppins"
-          >
-            Sasol Products
+          <Link to="/" className="flex items-center p-2">
+            <span className="w-24 flex justify-center items-center">
+              <img src={logo} alt="" />
+            </span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
