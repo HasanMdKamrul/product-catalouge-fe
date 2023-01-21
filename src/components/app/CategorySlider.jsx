@@ -12,6 +12,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 import CategoryCard from "./CategoryCard";
+import ClientReviews from "./ClientReviews";
 
 const CategorySlider = ({ children, categoryData, heading, slidesPerView }) => {
   return (
@@ -40,7 +41,11 @@ const CategorySlider = ({ children, categoryData, heading, slidesPerView }) => {
             ))}
           </div>
           {!categoryData &&
-            children?.map((child) => <SwiperSlide>{child}</SwiperSlide>)}
+            [...Array(3).keys()]?.map((item, index) => (
+              <SwiperSlide key={index}>
+                <ClientReviews />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </>

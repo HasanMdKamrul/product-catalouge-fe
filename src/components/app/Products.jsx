@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Heading from "../core/Heading";
 
 import ProductCard from "./ProductCard";
@@ -93,17 +94,19 @@ const Products = ({
           {previousUrl && (
             <button
               onClick={() => handlePagination(previousUrl)}
-              className="btn btn-accent mr-2"
+              className="btn btn-outline btn-sm mr-2"
             >
+              <FaArrowLeft className="mr-2" />
               Previous
             </button>
           )}
           {nextUrl && (
             <button
               onClick={() => handlePagination(nextUrl)}
-              className="btn btn-accent"
+              className="btn btn-outline btn-sm"
             >
               Next
+              <FaArrowRight className="ml-2" />
             </button>
           )}
         </div>

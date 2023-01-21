@@ -26,7 +26,10 @@ export default function Slider() {
           className="mySwiper"
         >
           {SliderImages?.map((item) => (
-            <SwiperSlide className="flex justify-center items-center w-full  ">
+            <SwiperSlide
+              key={item?.id}
+              className="flex justify-center items-center w-full  "
+            >
               <img className="w-full " src={item?.url} alt="" />
             </SwiperSlide>
           ))}

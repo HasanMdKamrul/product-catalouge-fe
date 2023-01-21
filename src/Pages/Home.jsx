@@ -12,10 +12,7 @@ import Slider from "../components/core/Slider";
 import { CategoryData } from "../constants/Constants";
 
 const Home = () => {
-  const {
-    data: { results: products },
-    isLoading,
-  } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["api", "products", "ordering"],
     queryFn: async () => {
       try {
@@ -39,7 +36,7 @@ const Home = () => {
       <WelcomeText>Welcome to sasol</WelcomeText>
       <Slider />
       <Partners />
-      <HomeSlider products={products} />
+      <HomeSlider products={data?.results?.products} />
       <CategorySlider
         slidesPerView={2}
         heading="Products Category"
@@ -47,6 +44,10 @@ const Home = () => {
       />
       <Investors />
       <Teams />
+      <CategorySlider
+        slidesPerView={1}
+        heading="Client Reviews"
+      ></CategorySlider>
       <Banner />
     </>
   );
