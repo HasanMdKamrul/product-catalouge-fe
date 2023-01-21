@@ -1,5 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useLoaderData } from "react-router-dom";
 import Banner from "../components/app/Banner";
 import CategorySlider from "../components/app/CategorySlider";
 import { Investors } from "../components/app/Investors";
@@ -7,11 +7,32 @@ import Partners from "../components/app/Partners";
 import { Teams } from "../components/app/Teams";
 import WelcomeText from "../components/app/WelcomeText";
 import HomeSlider from "../components/core/HomeSlider";
+import LoadingSpinner from "../components/core/LoadingSpinner";
 import Slider from "../components/core/Slider";
 import { CategoryData } from "../constants/Constants";
 
 const Home = () => {
-  const { results: products } = useLoaderData();
+  const {
+    data: { results: products },
+    isLoading,
+  } = useQuery({
+    queryKey: ["api", "products", "ordering"],
+    queryFn: async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_END_POINT}api/products/?ordering=-id`
+        );
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <>

@@ -20,10 +20,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () =>
-          fetch(
-            `${process.env.REACT_APP_API_END_POINT}api/products/?ordering=-id`
-          ),
       },
       {
         path: "/allproducts",
