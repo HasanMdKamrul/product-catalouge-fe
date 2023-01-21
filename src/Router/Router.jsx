@@ -31,19 +31,39 @@ const router = createBrowserRouter([
       },
       {
         path: "/addproduct",
-        element: <AddProduct />,
+        element: (
+          <PrivateRoute>
+            <AddProduct />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allproducts/:id",
-        element: <ProductDetail />,
+        element: (
+          <PrivateRoute>
+            <ProductDetail />
+          </PrivateRoute>
+        ),
         loader: ({ params: { id } }) =>
-          fetch(`${process.env.REACT_APP_API_END_POINT}api/products/${id}/`),
+          fetch(`${process.env.REACT_APP_API_END_POINT}api/products/${id}/`, {
+            headers: {
+              Authorization: `Token ${localStorage.getItem("auth_token")}`,
+            },
+          }),
       },
       {
         path: "/updateproduct/:id",
-        element: <ProductUpdate />,
+        element: (
+          <PrivateRoute>
+            <ProductUpdate />
+          </PrivateRoute>
+        ),
         loader: ({ params: { id } }) =>
-          fetch(`${process.env.REACT_APP_API_END_POINT}api/products/${id}`),
+          fetch(`${process.env.REACT_APP_API_END_POINT}api/products/${id}`, {
+            headers: {
+              Authorization: `Token ${localStorage.getItem("auth_token")}`,
+            },
+          }),
       },
       {
         path: "/register",

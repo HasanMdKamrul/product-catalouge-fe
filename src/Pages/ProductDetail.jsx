@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { toast } from "react-hot-toast";
 import { FaCheck, FaMinus, FaMoneyBillWave } from "react-icons/fa";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Heading from "../components/core/Heading";
@@ -17,10 +18,14 @@ const ProductDetail = () => {
           `${process.env.REACT_APP_API_END_POINT}api/products/${id}/delete`,
           {
             method: "DELETE",
+            headers: {
+              Authorization: `Token ${localStorage.getItem("auth_token")}`,
+            },
           }
         );
         const data = await response.json();
         if (response.ok) {
+          toast.success("Delete Successful");
           navigate("/allproducts");
         }
       } catch (error) {

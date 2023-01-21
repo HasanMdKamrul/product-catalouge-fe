@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Button from "../components/core/Button";
 import Heading from "../components/core/Heading";
@@ -50,6 +51,7 @@ const ProductUpdate = () => {
       const data = await response.json();
 
       if (response.ok) {
+        toast.success("Product Updated");
         navigate("/allproducts");
       }
     } catch (error) {
