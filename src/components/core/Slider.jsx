@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Navigation, Pagination } from "swiper";
-import { SliderImages } from "../../constants/Images";
+import { SliderImages } from "../../constants/Constants";
 
 export default function Slider() {
   return (

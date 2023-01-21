@@ -64,3 +64,36 @@ export const Services = [
       "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1415&q=80",
   },
 ];
+
+export const partnersData = [
+  {
+    id: 1,
+    title: "OUR SUITE OF REPORTING",
+    imgSrc: "https://www.sasol.com/sites/default/files/2022-05/governance.jpg",
+    description:
+      "Our suite of annual reporting provides an integrated perspective across all our reports...",
+  },
+  {
+    id: 2,
+    title: "CORPORATE GOVERNANCE",
+    imgSrc:
+      "https://www.sasol.com/sites/default/files/2021-10/investor-meeting.jpg",
+    description:
+      "Sasol applies sound corporate governance structures and processes, which the board considers pivotal...",
+  },
+  {
+    id: 3,
+    title: "SHARE AND DIVIDEND INFORMATION",
+    imgSrc:
+      "https://www.sasol.com/sites/default/files/2022-06/DividendInfo.jpg",
+    description:
+      "The dividend is declared and paid out in Rand for the holders of ordinary shares. For investors in the depositary…",
+  },
+  {
+    id: 4,
+    title: "SASOL KHANYISA",
+    imgSrc: "https://www.sasol.com/sites/default/files/2022-06/Khanyisa.jpg",
+    description:
+      "Khanyisa is a word that means to illuminate. It is this concept that we have drawn our inspiration from...",
+  },
+];
