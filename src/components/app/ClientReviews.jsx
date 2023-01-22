@@ -3,7 +3,7 @@ import React from "react";
 const ClientReviews = () => {
   return (
     <>
-      <section className=" bg-[#F8EDE3] ">
+      <section className=" bg-[#F8EDE3] hover:cursor-pointer ">
         <div className="max-w-6xl px-6 py-10 mx-auto">
           <p className="text-xl font-medium text-blue-500 ">Testimonials</p>
 

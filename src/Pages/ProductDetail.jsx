@@ -8,11 +8,11 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const product = useLoaderData();
 
-  console.log(product);
+  // console.log(product);
 
   const handledelete = useCallback(
     async (id) => {
-      console.log(id);
+      // console.log(id);
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_END_POINT}api/products/${id}/delete`,
@@ -55,7 +55,7 @@ const ProductDetail = () => {
                   viewBox="0 0 20 104"
                   fill="currentColor"
                 >
-                  <polygon points="17.3036738 5.68434189e-14 20 5.68434189e-14 20 104 0.824555778 104" />
+                  {/* <polygon points="17.3036738 5.68434189e-14 20 5.68434189e-14 20 104 0.824555778 104" /> */}
                 </svg>
               </div>
               <div className="flex flex-col justify-center p-8 bg-white lg:p-16 lg:pl-10 lg:w-1/2">

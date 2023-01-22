@@ -36,7 +36,7 @@ const Home = () => {
       <WelcomeText>Welcome to sasol</WelcomeText>
       <Slider />
       <Partners />
-      <HomeSlider products={data?.results?.products} />
+      <HomeSlider products={data?.results} />
       <CategorySlider
         slidesPerView={2}
         heading="Products Category"

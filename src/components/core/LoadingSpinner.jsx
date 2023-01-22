@@ -3,7 +3,7 @@ import "./LoadingSpinner.css";
 const LoadingSpinner = () => {
   return (
     <>
-      <div className="my-12 flex justify-center items-center">
+      <div className="my-12 flex justify-center items-center min-h-screen">
         <svg
           className="pl"
           viewBox="0 0 160 160"

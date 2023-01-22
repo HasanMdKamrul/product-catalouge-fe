@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MyProductCard from "../components/app/MyProductCard";
 import Heading from "../components/core/Heading";
 import LoadingSpinner from "../components/core/LoadingSpinner";
-import useAuth from "../Hooks/useAuth";
+import { AuthContext } from "../Contexts/AuthProvider";
 
 const MyProducts = () => {
   const [myProducts, setMyProducts] = useState([]);
   //   const [loading, setLoading] = useState(true);
 
-  console.log(myProducts);
+  // console.log(myProducts);
 
-  const { user } = useAuth();
+  const { user } = useContext(AuthContext);
 
   //   useEffect(() => {
   //     const loadData = async () => {

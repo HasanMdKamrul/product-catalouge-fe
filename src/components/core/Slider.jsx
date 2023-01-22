@@ -13,7 +13,7 @@ import { SliderImages } from "../../constants/Constants";
 export default function Slider() {
   return (
     <>
-      <div className="mb-12">
+      <div className="mb-12 hover:cursor-pointer">
         <Swiper
           slidesPerView={1}
           spaceBetween={30}

@@ -1,14 +1,20 @@
 // import Link from "next/link";
 
+import { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assests/Images/sasollogo.png";
+import { AuthContext } from "../../Contexts/AuthProvider";
+import useRole from "../../Hooks/useRole";
 import useToken from "../../Hooks/useToken";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+  const { admin, loading } = useRole(user?.email);
   const { token } = useToken();
 
+  console.log(admin);
   const navigate = useNavigate();
 
   const NavItems = (
@@ -58,6 +64,19 @@ const Navbar = () => {
           }
         >
           My products
+        </NavLink>
+      )}
+      {admin && (
+        <NavLink
+          rel="noopener noreferrer"
+          to={`/dashboard`}
+          className={({ isActive }) =>
+            isActive
+              ? "flex items-center  pb-1 animate-pulse  px-4 -mb-1 border-b-2 font-poppins font-bold  text-violet-400 border-violet-400 "
+              : "flex items-center px-4 -mb-1 border-b-0 font-poppins font-bold   "
+          }
+        >
+          Dashboard
         </NavLink>
       )}
     </>

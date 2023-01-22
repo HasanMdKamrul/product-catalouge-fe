@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../Layouts/DashboardLayout";
 import Main from "../Layouts/Main";
 import AddProduct from "../Pages/AddProduct";
 import AllProducts from "../Pages/AllProducts";
+import Dashboard from "../Pages/Dashboard";
 import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
@@ -9,6 +11,7 @@ import MyProducts from "../Pages/MyProducts";
 import ProductDetail from "../Pages/ProductDetail";
 import ProductUpdate from "../Pages/ProductUpdate";
 import Registration from "../Pages/Registration";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -77,6 +80,28 @@ const router = createBrowserRouter([
             <MyProducts />
           </PrivateRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/dashboard",
+        element: (
+          <AdminRoute>
+            <Dashboard />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allusers",
       },
     ],
   },
