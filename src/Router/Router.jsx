@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AllUsers from "../components/app/AllUsers";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Main from "../Layouts/Main";
 import AddProduct from "../Pages/AddProduct";
@@ -102,6 +103,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/allusers",
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
     ],
   },
