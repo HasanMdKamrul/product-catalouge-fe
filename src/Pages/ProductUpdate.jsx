@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Button from "../components/core/Button";
 import Heading from "../components/core/Heading";
-import { AuthContext } from "../Contexts/AuthProvider";
+import useAuth from "../Hooks/useAuth";
 
 const ProductUpdate = () => {
   const product = useLoaderData();
 
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   // console.log(product);
 
