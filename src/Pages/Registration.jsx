@@ -1,54 +1,63 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { username, firstname, lastname, email, password, confirmpassword } =
-      e.target.elements;
-    // console.log(
-    //   username.value,
-    //   firstname.value,
-    //   lastname.value,
-    //   email.value,
-    //   password.value
-    // );
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const {
+        username,
+        firstname,
+        lastname,
+        email,
+        password,
+        confirmpassword,
+      } = e.target.elements;
+      // console.log(
+      //   username.value,
+      //   firstname.value,
+      //   lastname.value,
+      //   email.value,
+      //   password.value
+      // );
 
-    if (password.value !== confirmpassword.value) {
-      return toast.error("Passwords do not match !");
-    }
-
-    const registerData = {
-      username: username.value,
-      first_name: firstname.value,
-      last_name: lastname.value,
-      email: email.value,
-      password: password.value,
-      re_password: confirmpassword.value,
-    };
-
-    try {
-      const response = await fetch(`http://localhost:8000/auth/users/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registerData),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        toast.success("Registration Successful");
-        navigate("/");
-      } else {
-        toast.error("Something Went Wrong, Please try again !");
+      if (password.value !== confirmpassword.value) {
+        return toast.error("Passwords do not match !");
       }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+
+      const registerData = {
+        username: username.value,
+        first_name: firstname.value,
+        last_name: lastname.value,
+        email: email.value,
+        password: password.value,
+        re_password: confirmpassword.value,
+      };
+
+      try {
+        const response = await fetch(`http://localhost:8000/auth/users/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(registerData),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          toast.success("Registration Successful");
+          navigate("/");
+        } else {
+          toast.error("Something Went Wrong, Please try again !");
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    [navigate]
+  );
 
   return (
     <>

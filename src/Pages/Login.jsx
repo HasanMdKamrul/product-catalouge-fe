@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -8,39 +8,45 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = e.target.elements;
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const { email, password } = e.target.elements;
 
-    const loginData = {
-      email: email.value,
-      password: password.value,
-    };
+      const loginData = {
+        email: email.value,
+        password: password.value,
+      };
 
-    try {
-      const response = await fetch(`http://localhost:8000/auth/token/login/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
+      try {
+        const response = await fetch(
+          `http://localhost:8000/auth/token/login/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+          }
+        );
 
-      const data = await response.json();
-      // console.log(data);
-      if (response.ok) {
+        const data = await response.json();
         // console.log(data);
-        toast.success("Login Successful");
-        localStorage.setItem("auth_token", data.auth_token);
+        if (response.ok) {
+          // console.log(data);
+          toast.success("Login Successful");
+          localStorage.setItem("auth_token", data.auth_token);
 
-        navigate(from, { replace: true });
-      } else {
-        toast.error("Email Or Password is incorrect !");
+          navigate(from, { replace: true });
+        } else {
+          toast.error("Email Or Password is incorrect !");
+        }
+      } catch (error) {
+        console.log(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    },
+    [from, navigate]
+  );
 
   return (
     <>

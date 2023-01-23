@@ -1,14 +1,14 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/core/Button";
 import Heading from "../components/core/Heading";
-import { AuthContext } from "../Contexts/AuthProvider";
+import useAuth from "../Hooks/useAuth";
 
 const AddProduct = () => {
   const [activeState, setActiveState] = useState(false);
   const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   const handleSubmit = useCallback(
     async (e) => {
@@ -30,7 +30,7 @@ const AddProduct = () => {
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_END_POINT}api/products/add/`,
+          `http://127.0.0.1:8000/api/products/add/`,
           {
             method: "POST",
             headers: {

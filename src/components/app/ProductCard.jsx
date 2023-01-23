@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../core/Button";
 import "./ProductCard.css";
@@ -8,14 +8,14 @@ const ProductCard = ({ product }) => {
 
   const navigate = useNavigate();
 
-  const handleDetail = () => {
-    navigate(`/allproducts/${product.id}`);
-  };
+  const handleDetail = useCallback(() => {
+    navigate(`/allproducts/${product?.id}`);
+  }, [navigate, product?.id]);
 
   return (
     <div className="card">
-      <div className="card-img">
-        <img src={picture} alt="" />
+      <div className="card-img ">
+        <img className="w-full h-[100%]" src={picture} alt="" />
       </div>
       <div className="card-info">
         <p className="text-title">{name} </p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Heading from "../core/Heading";
 
@@ -16,7 +16,7 @@ const Products = ({
   const [searchResults, setSearchResults] = useState([]);
   const [noDataFound, setNoDataFound] = useState(false);
 
-  const handleSearch = async () => {
+  const handleSearch = useCallback(async () => {
     if (search) {
       try {
         const response = await fetch(
@@ -39,19 +39,22 @@ const Products = ({
     } else {
       setSearchResults([]);
     }
-  };
+  }, [search]);
 
-  const handlePagination = async (url) => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setProducts(data.results);
-      setNextUrl(data.next);
-      setPreviousUrl(data.previous);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  const handlePagination = useCallback(
+    async (url) => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setProducts(data.results);
+        setNextUrl(data.next);
+        setPreviousUrl(data.previous);
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    [setNextUrl, setPreviousUrl, setProducts]
+  );
 
   return (
     <>

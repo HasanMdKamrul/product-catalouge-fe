@@ -1,6 +1,6 @@
 // import Link from "next/link";
 
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { toast } from "react-hot-toast";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -82,7 +82,7 @@ const Navbar = () => {
     </>
   );
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     try {
       const response = await fetch(`http://localhost:8000/auth/token/logout/`, {
         method: "POST",
@@ -99,7 +99,7 @@ const Navbar = () => {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }, [navigate]);
 
   return (
     <>
